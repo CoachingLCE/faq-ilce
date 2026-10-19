@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { aHtml } from '../lib/faqTexto';
 import { buscar, normalizar } from '../lib/buscador';
 import { CATEGORIAS, nombreCategoria, CONTACTO, PROMO } from '../lib/constants';
+import { mensajePromoWa } from '../lib/promo';
 
 const K_DATOS = 'ilce-faq-datos';          // localStorage: para precargar el formulario la próxima vez
 const K_IDENT = 'ilce-faq-ident-';         // sessionStorage: ya se identificó en esta visita
@@ -270,7 +271,7 @@ function Promo({ cursos, ubicacion }) {
   const terminada = resta === 0;
   const hh = resta == null ? 0 : Math.floor(resta / 3600000), mm = resta == null ? 0 : Math.floor(resta / 60000) % 60, ss = resta == null ? 0 : Math.floor(resta / 1000) % 60;
   const dos = (n) => String(n).padStart(2, '0');
-  const msj = PROMO.mensajeWa + (nombres[i] ? ' Me interesa: ' + nombres[i] + '.' : '');
+  const msj = mensajePromoWa(PROMO, resta) + (nombres[i] ? ' Me interesa: ' + nombres[i] + '.' : '');
   return (
     <div className="promo-wrap">
       <div className="ilce-wrap">

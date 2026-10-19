@@ -4,6 +4,7 @@ import { ROLES } from '../lib/constants';
 import { TIPOS_CAP, GRUPOS_ROLES, INFO_ROL, capacidadesDe, pantallasDe, nombreRol } from '../lib/rolesInfo';
 import { RolChip, RolesChips } from './RolChip';
 import ImportarUsuarios from './ImportarUsuarios';
+import MailsAutomaticos from './MailsAutomaticos';
 
 // Íconos de la fuente de íconos de la app (mismos que usa el resto de las pantallas).
 const IC = { ok: '', err: '', permisos: '', editar: '', eliminar: '', ver: '', clave: '', buscar: '', personas: '' };
@@ -369,6 +370,8 @@ export default function Accesos({ usuario, onVerHistorial }) {
           </form>
         </div>
       </div>
+
+      <MailsAutomaticos usuario={usuario} />
 
       {confirmarEliminar && (
         <div className="mwrap on">

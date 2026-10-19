@@ -5,6 +5,7 @@ import { TABS, HEADERS } from '../../../../lib/constants';
 import { idNuevo } from '../../../../lib/preguntas';
 import { identidadDe, emailValido, publicoValido, recortar } from '../../../../lib/publico';
 import { encolarFilas } from '../../../../lib/cola';
+import { enviarAvisoVideollamada } from '../../../../lib/mailer';
 
 export const dynamic = 'force-dynamic';
 
@@ -37,6 +38,10 @@ export async function POST(req) {
       await asegurarPestana(TABS.EVENTOS, HEADERS[TABS.EVENTOS]);
       await encolarFilas(TABS.EVENTOS, [[ahora, recortar(b.sesion, 48), publico, 'clic', 'Pidió videollamada (enviada)', '', '', 'videollamada', id.email, id.nombre, id.curso, id.edicion]]);
     } catch { /* */ }
+    // Aviso por mail al Departamento de estudiantes (con copia a Sofía). El pedido ya quedó guardado: si el mail falla, no se le muestra ningún error a la persona (queda anotado en el registro de mails).
+    try {
+      await enviarAvisoVideollamada({ id: idSol, publico, nombre: id.nombre, email: id.email, whatsapp: id.whatsapp, curso: id.curso, edicion: id.edicion, pais: recortar(b.pais, 60), zona, consulta, slots }, { panelUrl: new URL(req.url).origin + '/panel' });
+    } catch { /* nunca debe romper el pedido */ }
     return NextResponse.json({ ok: true, id: idSol });
   } catch (e) {
     console.error('[solicitud]', e?.message || e);
