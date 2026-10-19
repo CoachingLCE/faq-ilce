@@ -2939,3 +2939,25 @@ body{text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%}
 svg{shape-rendering:geometricPrecision}
 img{image-rendering:auto}
 .repx-root .evol-paneles{margin-top:12px}
+
+/* ===== Selector de tema y Herramientas arriba a la derecha (igual que Fichas 1.80.0) ===== */
+@media (min-width:1024px){
+  body.con-menu-lateral{padding-top:58px}
+  .navtools{position:fixed;top:13px;right:24px;z-index:60;padding:0;gap:8px;display:flex;align-items:center}
+}
+@media (max-width:1023px){
+  .navtema{position:sticky;right:0;z-index:5;display:inline-flex;align-items:center;flex:0 0 auto;margin-left:auto;padding-left:10px;background:linear-gradient(to left,rgb(var(--bg)) 78%,transparent)}
+}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 auto;border-radius:10px;border:1px solid rgb(var(--border));background:rgb(var(--surface));color:inherit;cursor:pointer;font-size:16px;line-height:1}
+.iconbtn.on{border-color:rgb(var(--accentPurple))}
+/* ===== Herramientas ===== */
+.hrr-h{font-size:17px;margin:0 0 4px;font-family:'Dosis';font-weight:600}
+.hrr-sub{font-size:12.5px;color:rgb(var(--textMuted));margin:0 0 16px}
+.hrr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:12px;margin-bottom:26px}
+.hrr-card{background:rgb(var(--surface));border:1px solid rgb(var(--border));border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
+.hrr-card:hover{transform:translateY(-2px);border-color:rgb(var(--accentPurple))}
+.hrr-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:20px}
+.hrr-nom{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px;font-weight:600}
+.hrr-desc{display:block;font-size:12.5px;line-height:1.35;margin-top:2px;color:rgb(var(--textMuted))}
+.hrr-actual{font-size:11.5px;padding:2px 9px;border-radius:999px;background:#7a1f96;color:#fff;font-weight:600}
+
